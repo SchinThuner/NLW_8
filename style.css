@@ -1,6 +1,7 @@
 /*========== GERAL ============*/
 * {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 :root {
@@ -12,6 +13,11 @@
   --nav-height: 7.2rem;
 
   font-size: 62.5%; /*1 rem = 10px agora*/
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -26,13 +32,16 @@ body {
   margin-inline: auto;
   padding-inline: 2.4rem;
 }
+ul {
+  list-style: none;
+}
 
 /*pseudo seletor*/
 /*========== HEADER ============*/
 
 header::before {
   content: '';
-  width: 100vw; /*100 unidades viewport de largura*/
+  width: 100%; /*100 unidades viewport de largura, quanto utilizando unidade vw*/
   height: calc(108rem + var(--nav-height));
   background-color: var(--brand-light);
   display: block; /*está tag libera as tags top e tal*/
@@ -158,4 +167,37 @@ nav.scroll svg:nth-child(1) path {
 
 nav.scroll svg:nth-child(2) path {
   stroke: white;
+}
+
+/*========== MENU-EXPANDED ============*/
+
+body.menu-expanded {
+  overflow: hidden;
+}
+
+.menu,
+.close-menu,
+body.menu-expanded .close-menu {
+  opacity: 0;
+  visibility: hidden;
+}
+
+body.menu-expanded .menu,
+body.menu-expanded .close-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.menu-expanded .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--primary-color);
+
+  width: 100vw;
+  height: 100vw;
+}
+
+body.menu-expanded nav {
+  position: relative;
 }
